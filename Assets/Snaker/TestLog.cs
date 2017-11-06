@@ -8,8 +8,9 @@ public class TestLog : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debuger.EnableLog = true;
-        //Debuger.EnableSave = true;
+        Debuger.EnableSave = true;
         this.Log("调试测试");
+        Debuger.Log(Debuger.LogFileDir);
         this.LogError("调试测试");
 	}
 	
