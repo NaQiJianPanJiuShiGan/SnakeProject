@@ -23,6 +23,7 @@ namespace Assets.Snaker
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
+        
         public ModuleEvent GetEvent(string type)
         {
             if (m_mapEvent==null)
@@ -35,6 +36,9 @@ namespace Assets.Snaker
             }
             return m_mapEvent[type];
         }
+        /// <summary>
+        /// 移除所有监听事件
+        /// </summary>
         public void Clear()
         {
             if (m_mapEvent!=null)

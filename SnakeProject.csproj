@@ -98,7 +98,12 @@
     <Compile Include="Assets\Snaker\AppMain.cs" />
     <Compile Include="Assets\Snaker\BusinessModule.cs" />
     <Compile Include="Assets\Snaker\EventTable.cs" />
+    <Compile Include="Assets\Snaker\Example.cs" />
+    <Compile Include="Assets\Snaker\GlobaleEvent.cs" />
+    <Compile Include="Assets\Snaker\LuaModule.cs" />
     <Compile Include="Assets\Snaker\Module.cs" />
+    <Compile Include="Assets\Snaker\ModuleManager.cs" />
+    <Compile Include="Assets\Snaker\ServiceModule.cs" />
     <Compile Include="Assets\Snaker\TestLog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

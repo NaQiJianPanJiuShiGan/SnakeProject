@@ -6,6 +6,9 @@ using SGF;
 using System.Reflection;
 namespace Assets.Snaker
 {
+    /// <summary>
+    /// 业务模块的基类
+    /// </summary>
     public abstract class BusinessModule : Module
     {
         private string m_name = "";
@@ -43,10 +46,19 @@ namespace Assets.Snaker
         {
             m_tblEvent = tblEvent;
         }
+        /// <summary>
+        /// 模块的一个事件
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public ModuleEvent Event(string type)
         {
             return GetEventTable().GetEvent(type);
         }
+        /// <summary>
+        /// 事件表
+        /// </summary>
+        /// <returns></returns>
         protected EventTable GetEventTable()
         {
             if (m_tblEvent==null)
@@ -55,6 +67,11 @@ namespace Assets.Snaker
             }
             return m_tblEvent;
         }
+        /// <summary>
+        /// 执行消息
+        /// </summary>
+        /// <param name="msg">方法名</param>
+        /// <param name="args">方法参数</param>
         internal void HandleMessage(string msg,object[] args)
         {
             this.Log("HandleMessage() msg{0},arge{1}", msg, args);
@@ -76,11 +93,14 @@ namespace Assets.Snaker
         {
             this.Log("Create args ={0}",args);
         }
+        /// <summary>
+        /// 清空模块事件
+        /// </summary>
         public override void Release()
         {
             if (m_tblEvent!=null)
             {
-                m_tblEvent.Clear();
+                m_tblEvent.Clear(); //清空事件表
                 m_tblEvent = null;
             }
             base.Release();
