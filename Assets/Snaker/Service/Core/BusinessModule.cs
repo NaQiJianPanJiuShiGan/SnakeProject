@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using SGF;
 using System.Reflection;
-namespace Assets.Snaker
+
+namespace Snaker.Service.Core
 {
     /// <summary>
     /// 业务模块的基类
@@ -75,7 +76,8 @@ namespace Assets.Snaker
         internal void HandleMessage(string msg,object[] args)
         {
             this.Log("HandleMessage() msg{0},arge{1}", msg, args);
-            MethodInfo mi = this.GetType().GetMethod(msg);
+            MethodInfo mi = this.GetType().GetMethod(msg);//通过反射得到消息中的方法,方法必须是公共方法才能反射到
+            this.Log(this.Name+"."+msg);
             if (mi!=null)
             {
                 mi.Invoke(this,args);

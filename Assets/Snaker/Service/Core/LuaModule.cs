@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core
 {
     public  class LuaModule :BusinessModule
     {

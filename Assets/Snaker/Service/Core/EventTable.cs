@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.Events;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core
 {
     public class ModuleEvent : UnityEvent<object>
     {

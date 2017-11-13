@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core
 {
     /// <summary>
     /// 全局事件
@@ -13,7 +13,7 @@ namespace Assets.Snaker
         public static ModuleEvent<bool> onLogin = new ModuleEvent<bool>();
         public static ModuleEvent<bool> onPlay = new ModuleEvent<bool>();
 
-        #region 使用方法
+        #region 例子
         public static void Foo()
         {
             GlobaleEvent.onLogin.AddListener(OnLogin);//事件监听

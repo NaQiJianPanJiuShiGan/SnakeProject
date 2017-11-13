@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SGF;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core
 {
     /// <summary>
     /// 模块管理器模块
@@ -41,6 +42,12 @@ namespace Assets.Snaker
         {
             return (T) CreateModule(typeof(T).Name, args);
         }
+        /// <summary>
+        /// 创建模块
+        /// </summary>
+        /// <param name="name">模块类名</param>
+        /// <param name="args">参数可为空</param>
+        /// <returns></returns>
         public BusinessModule CreateModule(string name,object args = null)
         {
             if (m_mapModule.ContainsKey(name))//存在就不能重复创建
@@ -85,15 +92,23 @@ namespace Assets.Snaker
             {
                 if (m_mapModule.ContainsKey(module.Name))
                 {
+                    this.Log("ReleaseModule() name = " + module.Name);
                     m_mapModule.Remove(module.Name);
                     module.Release();
                 }
                 else
                 {
-
+                    this.LogError("ReleaseModule() 模块不是由ModuleManager创建的！ name = " + module.Name);
                 }
             }
+            else
+            {
+                this.LogError("ReleaseModule() module = null!");
+            }
         }
+        /// <summary>
+        /// 释放所有模块
+        /// </summary>
         public void ReleaseAll()
         {
             foreach (var item in m_mapPreListenEvents)//清空预监听事件
@@ -113,7 +128,8 @@ namespace Assets.Snaker
             return (T)GetModule(typeof(T).Name);
         }
         /// <summary>
-        /// 获取模块
+        /// 通过名字获取一个模块
+        /// 如果为创建过该模块，则返回null
         /// </summary>
         /// <param name="name">模块名</param>
         /// <returns></returns>
@@ -129,7 +145,7 @@ namespace Assets.Snaker
             }
         }
         /// <summary>
-        /// 发送消息
+        /// 向指定模块发送消息
         /// </summary>
         /// <param name="target">发送到目标模块的名</param>
         /// <param name="msg">消息名</param>
@@ -171,10 +187,10 @@ namespace Assets.Snaker
             return list;
         }
         /// <summary>
-        /// 模块中的某个事件
+        /// 某个模块中的某个事件
         /// </summary>
         /// <param name="target">目标模块</param>
-        /// <param name="type">事件</param>
+        /// <param name="type">目标事件</param>
         /// <returns></returns>
         public ModuleEvent Event(string target,string type)
         {

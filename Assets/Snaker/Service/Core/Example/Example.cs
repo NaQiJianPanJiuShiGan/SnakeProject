@@ -5,20 +5,17 @@ using System.Text;
 using SGF;
 using UnityEngine;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core.Example
 {
-    public class Example : MonoBehaviour
+    public class Example
     {
-        void Start()
+        public void Init()
         {
-            Debuger.EnableLog = true;
-
             ModuleC.GetInstance.Init();
             ModuleManager.GetInstance.Init("Snaker.Service.Core.Example");
 
             ModuleManager.GetInstance.CreateModule("ModuleA");
             ModuleManager.GetInstance.CreateModule("ModuleB");
-
         }
 
     }
@@ -30,7 +27,7 @@ namespace Assets.Snaker
 
             //业务层模块之间，通过Message进行通讯
             ModuleManager.GetInstance.SendMessage("ModuleB", "MessageFromA_1", 1, 2, 3);
-            ModuleManager.GetInstance.SendMessage("ModuleB", "MessageFromA_2", "abc", 123);
+            ModuleManager.GetInstance.SendMessage("ModuleB", "MessageFromA_2", "abc",123);
 
             //业务层模块之间，通过Event进行通讯 
             ModuleManager.GetInstance.Event("ModuleB", "onModuleEventB").AddListener(OnModuleEventB);
@@ -69,7 +66,7 @@ namespace Assets.Snaker
             onModuleEventB.Invoke("aaaa");
         }
 
-        protected void MessageFromA_2(string args1, int args2)
+        public void MessageFromA_2(string args1, int args2)
         {
             this.Log("MessageFromA_2() args:{0},{1}", args1, args2);
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SGF;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core
 {
     public abstract class Module
     {

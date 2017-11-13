@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Snaker
+namespace Snaker.Service.Core
 {
 
     public abstract class ServiceModule<T> : Module where T : new() //限制传入的类并且必须带有公共无参构造函数的非抽象类型
